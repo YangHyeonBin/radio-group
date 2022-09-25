@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { ReactComponent as CheckedIcon } from '../assets/icon_checked.svg';
+import { ReactComponent as UncheckedIcon } from '../assets/icon_unchecked.svg';
+
 export default function Question({ title, questionList }) {
   const [checkedElement, setCheckedElement] = useState(-1);
 
   const radioButtonChangeHandler = (e) => {
-    setCheckedElement(e.target.value);
+    setCheckedElement(Number(e.target.value));
     // console.log(typeof e.target.value); // string
   };
 
@@ -18,9 +21,10 @@ export default function Question({ title, questionList }) {
             <input
               type='radio'
               value={index}
-              checked={Number(checkedElement) === index}
+              checked={checkedElement === index}
               onChange={radioButtonChangeHandler}
             />
+            {checkedElement === index ? <CheckedIcon /> : <UncheckedIcon />}
             <div className='questionText'>{question}</div>
           </RadioWrap>
           // <React.Fragment key={index}>
@@ -56,5 +60,9 @@ const RadioWrap = styled.label`
 
   .questionText {
     margin-left: 0.5rem;
+  }
+
+  input {
+    display: none;
   }
 `;

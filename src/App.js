@@ -26,5 +26,6 @@ const RootWrap = styled.div`
   max-width: 500px;
   left: 50%;
   transform: translate(-50%, 0);
+  padding: 20px;
   background-color: white;
 `;
